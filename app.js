@@ -5,6 +5,8 @@ var fs  = require('fs')
 var _   = require('lodash')
 var moment = require('moment')
 
+var port = process.env.PORT || 3000
+
 
 function getFiles (dir, files_){
   files_ = files_ || [];
@@ -93,6 +95,6 @@ app.get('/playlist.m3u8', function (req, res) {
     .send(writer.toString());
 });
 
-app.listen(3001, function () {
-  console.log('Example app listening on port 3000!');
+app.listen(port, function () {
+  console.log('Example app listening on port' + port);
 });
