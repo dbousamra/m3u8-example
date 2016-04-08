@@ -1,0 +1,17 @@
+{
+  "name": "m3u8-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dominic Bou-Samra <dominic.bou.samra@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "lodash": "^4.8.2",
+    "m3u": "0.0.2",
+    "moment": "^2.12.0"
+  }
+}
