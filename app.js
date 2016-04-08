@@ -5,7 +5,7 @@ var fs  = require('fs')
 var _   = require('lodash')
 var moment = require('moment')
 
-var port = process.env.PORT || 3000
+var port = process.env.PORT || 3001
 
 
 function getFiles (dir, files_){
@@ -52,12 +52,16 @@ app.use('/assets', express.static('assets'));
 
 app.get('/playlist.m3u8', function (req, res) {
   
-  var uploadTime = 6
-  var start = new Date(parseInt(req.query.start)).valueOf()
-  var diffInSeconds = (new Date().valueOf() - start) / 1000
-  console.log(diffInSeconds)
-  var toTake = Math.floor(diffInSeconds / uploadTime)
-  var videoFilesToTake = _.take(videoFiles, toTake)
+  var videoFilesToTake;
+  if (req.query.start) {
+    var uploadTime = 6
+    var start = new Date(parseInt(req.query.start)).valueOf()
+    var diffInSeconds = (new Date().valueOf() - start) / 1000
+    var toTake = Math.floor(diffInSeconds / uploadTime)
+    videoFilesToTake = _.take(videoFiles, toTake)
+  } else {
+    videoFilesToTake = videoFiles
+  }
 
   var writer = m3u.httpLiveStreamingWriter()
   // EXT-X-VERSION: Indicates the compatibility version of the Playlist file.
